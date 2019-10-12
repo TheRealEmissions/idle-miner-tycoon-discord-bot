@@ -1,0 +1,12 @@
+storage/auth.js
+node_modules/
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.jpg
+temp/

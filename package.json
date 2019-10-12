@@ -1,0 +1,25 @@
+{
+  "name": "hideout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Emissions/emissions-hideout.git"
+  },
+  "author": "Emissions#2565 + Discord Community",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Emissions/emissions-hideout/issues"
+  },
+  "homepage": "https://gitlab.com/Emissions/emissions-hideout#readme",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "djs-commands": "^1.2.2",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.7.4"
+  }
+}
