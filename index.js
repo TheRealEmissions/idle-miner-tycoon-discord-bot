@@ -61,7 +61,7 @@ const {
 } = require(`djs-commands`);
 let cmdHandler = new CommandHandler({
     folder: __dirname + `/commands/`,
-    prefix: ["#"]
+    prefix: ["."]
 });
 
 /*
@@ -74,6 +74,9 @@ client.storage = storage;
 client.functions = functions;
 client.methods = methods;
 client.models = models;
+
+const mineSelected = new Set();
+client.mineSelected = mineSelected;
 
 /*
 EXPORTS + LOGIN

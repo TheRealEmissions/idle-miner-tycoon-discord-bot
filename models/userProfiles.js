@@ -24,16 +24,26 @@ const mines = new modules.mongoose.Schema({
         required: false,
         default: 0
     },
-    total_kg: {
+    sum_kg: {
         type: Number,
         required: false,
         default: 0
-    } // earned in total, not what the user currently has
+    }
 });
 module.exports = modules.mongoose.model(`userProfiles`, new modules.mongoose.Schema({
     user_id: {
         type: String,
         required: true
+    },
+    points: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    rebirth: {
+        type: Number,
+        required: false,
+        default: 0
     },
     mines: [mines]
 }));
