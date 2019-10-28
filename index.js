@@ -75,7 +75,7 @@ client.functions = functions;
 client.methods = methods;
 client.models = models;
 
-const mineSelected = new Set();
+const mineSelected = new Map();
 client.mineSelected = mineSelected;
 
 /*

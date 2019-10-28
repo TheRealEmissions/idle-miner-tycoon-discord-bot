@@ -1,6 +1,39 @@
-module.exports = (client) => {
+class database {
+    constructor(client) {
+        this.client = client;
+        this.guildMines();
+    }
+
+    guildMines() {
+        return new Promise(async (resolve, reject) => {
+            for (const index in this.client.storage.mines) {
+                this.client.guilds.forEach(g => {
+                    this.client.models.guildMines.findOne({
+                        guild_id: g.id,
+                        type: this.client.storage.mines[index].type
+                    }, (err, db) => {
+                        if (err) return reject(err);
+                        if (!db) {
+                            const newdb = new this.client.models.guildMines({
+                                guild_id: g.id,
+                                type: this.client.storage.mines[index].type
+                            });
+                            newdb.save((err) => {
+                                if (err) return reject(err);
+                            });
+                        };
+                    });
+                });
+            }
+            return resolve();
+        });
+    }
+}
+
+module.exports = async (client) => {
     console.log(`[LOG] Bot successfully initialized:`);
     console.log(`- Username: ${client.user.username}`);
     console.log(`- Discriminator: ${client.user.discriminator}`);
     console.log(`- ID: ${client.user.id}`);
+    new database(client);
 }
