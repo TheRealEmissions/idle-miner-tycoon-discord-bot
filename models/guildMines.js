@@ -22,10 +22,5 @@ module.exports = modules.mongoose.model(`guildMines`, new modules.mongoose.Schem
         type: Number,
         required: false,
         default: 0
-    },
-    sum_rebirths: {
-        type: Number,
-        required: false,
-        default: 0
     }
 }));

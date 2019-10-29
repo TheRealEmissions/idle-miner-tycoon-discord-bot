@@ -10,12 +10,15 @@ module.exports = class stats {
             client.models.userProfiles.find({}).lean().exec((err, docs) => {
                 if (err) return r(err);
                 let mine = 0;
+                let rebirth = 0;
                 for (const doc of docs) {
                     mine += doc.mines.length;
+                    rebirth += doc.rebirth;
                 }
                 return re({
                     users: docs.length,
-                    mines: mine
+                    mines: mine,
+                    rebirths: rebirth
                 });
             });
         });
@@ -28,18 +31,15 @@ module.exports = class stats {
                 let sumkg = 0;
                 let sum$ = 0;
                 let sumprest = 0;
-                let sumrebirth = 0;
                 for (const doc of docs) {
                     sumkg += doc.sum_kg;
                     sum$ += doc.sum_money;
                     sumprest += doc.sum_prestiges;
-                    sumrebirth += doc.sum_rebirths;
                 }
                 return re({
                     sumkg: sumkg,
                     sum$: sum$,
                     sumprest: sumprest,
-                    sumrebirth: sumrebirth
                 });
             });
         });
@@ -56,7 +56,7 @@ module.exports = class stats {
             .addField(`Total KG mined:`, guildMines.sumkg, true)
             .addField(`Total $ earned:`, guildMines.sum$, true)
             .addField(`Total amount of prestiges:`, guildMines.sumprest, true)
-            .addField(`Total amount of rebirths:`, guildMines.sumrebirth, true)
+            .addField(`Total amount of rebirths:`, userProfiles.rebirths, true)
         )
     }
 }
