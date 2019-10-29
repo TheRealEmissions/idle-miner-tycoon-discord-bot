@@ -9,8 +9,13 @@ module.exports = class stats {
         return new Promise((re, r) => {
             client.models.userProfiles.find({}).lean().exec((err, docs) => {
                 if (err) return r(err);
+                let mine = 0;
+                for (const doc of docs) {
+                    mine += doc.mines.length;
+                }
                 return re({
-                    users: docs.length
+                    users: docs.length,
+                    mines: mine
                 });
             });
         });
@@ -47,6 +52,7 @@ module.exports = class stats {
             .setColor(message.guild.me.displayHexColor)
             .setTitle(`**Idle Mining Statistics:**`)
             .addField(`Amount of users registered:`, userProfiles.users, true)
+            .addField(`Amount of mines:`, userProfiles.mines, true)
             .addField(`Total KG mined:`, guildMines.sumkg, true)
             .addField(`Total $ earned:`, guildMines.sum$, true)
             .addField(`Total amount of prestiges:`, guildMines.sumprest, true)

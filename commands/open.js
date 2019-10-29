@@ -1,10 +1,9 @@
-let crates = new Map();
 module.exports = class open {
     constructor() {
         this.name = 'open';
         this.alias = ['o'];
         this.usage = '.open';
-        this.crates = crates;
+        this.crates = new Map();
     }
 
     async run(client, message, args) {
@@ -25,6 +24,13 @@ module.exports = class open {
                 this.crates.set(no, `mc${c.star}`);
                 let str = `\n${c.amount}x ${client.functions.noToStarEmoji(c.star)} \`${no}\``
                 minecrates = minecrates.concat(str);
+            }
+            if (minecrates == '') {
+                message.channel.send(new client.modules.Discord.MessageEmbed()
+                    .setColor(message.guild.me.displayHexColor)
+                    .setDescription(`You do not have any crates to open... :slight_frown:`)
+                );
+                return;
             }
             let embed = {
                 embed: {

@@ -1,10 +1,10 @@
-let mcdrop = new Map();
 module.exports = class crateHandler {
     constructor(client, message, msg, id) {
         this.client = client;
         this.message = message;
         this.msg = msg;
         this.id = id;
+        this.mcdrop = new Map();
         this.processCrate();
     }
 
@@ -82,13 +82,13 @@ module.exports = class crateHandler {
         for (const n in emojis) {
             this.msg.react(emojis[n]);
             let drop = await this.getMineCrateDrop(star);
-            mcdrop.set(emojis[n], drop);
+            this.mcdrop.set(emojis[n], drop);
         }
         let collector = new this.client.modules.Discord.ReactionCollector(this.msg, (reaction, user) => emojis.includes(reaction.emoji.id) && user.id == this.message.author.id, {
             max: 1
         });
         collector.on('collect', reaction => {
-            let drop = mcdrop.get(reaction.emoji.id);
+            let drop = this.mcdrop.get(reaction.emoji.id);
             setTimeout(() => {
                 this.msg.reactions.removeAll();
             }, 5000);
@@ -97,6 +97,33 @@ module.exports = class crateHandler {
                 .setTitle(`**Opened a ${this.client.functions.noToStarEmoji(star)} Mine Crate:**`)
                 .setDescription(`> **In that box, you found:**\n**${drop.type} Mine**\n \`Rarity\` ${this.client.functions.noToStarEmoji(drop.rarity)}\n \`Sell price/KG\` $${this.client.functions.formatNumber(drop.ppk)}\n \`KG/s\` ${drop.kgps}`)
             );
+            this.client.models.userCrates.findOne({
+                "user_id": this.message.author.id
+            }, (err, db) => {
+                if (err) return reject(err);
+                db.mine_crates.find(x => x.star == 1).amount -= 1;
+                db.markModified("mine_crates");
+                db.save((err) => {
+                    if (err) return reject(err);
+                });
+            });
+            this.client.models.userProfiles.findOne({
+                "user_id": this.message.author.id
+            }, (err, db) => {
+                if (err) return reject(err);
+                db.mines.push({
+                    index: db.mines.length + 1,
+                    type: drop.type.toUpperCase(),
+                    prestige: 0,
+                    level: 1,
+                    balance: 0,
+                    sum_kg: 0,
+                    lastsell_timestamp: new Date()
+                });
+                db.save((err) => {
+                    if (err) return reject(err);
+                });
+            })
         });
     }
 }

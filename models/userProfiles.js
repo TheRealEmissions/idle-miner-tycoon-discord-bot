@@ -28,6 +28,11 @@ const mines = new modules.mongoose.Schema({
         type: Number,
         required: false,
         default: 0
+    },
+    lastsell_timestamp: {
+        type: Date,
+        required: false,
+        default: new Date()
     }
 });
 module.exports = modules.mongoose.model(`userProfiles`, new modules.mongoose.Schema({
