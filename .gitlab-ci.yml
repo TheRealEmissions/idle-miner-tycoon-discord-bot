@@ -8,8 +8,8 @@ stages:
 start:
   stage: start
   script:
-    - sudo pm2 stop 1
-    - cd /home/emissions/bots/idle_miner_tycoon
+    - sudo pm2 stop imt
+    - sudo pm2 del imt
     
 deploy:
   stage: deploy
@@ -20,4 +20,4 @@ deploy:
 finish:
   stage: finish
   script:
-    - sudo pm2 start index.js
+    - sudo pm2 start index.js --name "imt"
