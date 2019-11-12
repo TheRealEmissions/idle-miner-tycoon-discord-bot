@@ -10,5 +10,6 @@ module.exports = class test {
       message.channel.send(`success`);
       message.channel.send(`and the update worked!`);
       message.channel.send(`again`);
+      console.log("yup");
    }
 };
