@@ -7,6 +7,6 @@ module.exports = class test {
    }
 
    async run(client, message, args) {
-      console.log(client.functions.genNumberBetween(0, 1));
+      message.channel.send(`success`);
    }
 };
