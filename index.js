@@ -94,6 +94,3 @@ if (typeof token !== "string") {
    return;
 }
 client.login(require(`./storage/auth`).token);
-
-
-
