@@ -90,7 +90,7 @@ if (!token) {
    return;
 }
 if (typeof token !== "string") {
-   console.error(`[ERROR] Token presented in auth.js /storage/ not a string!`);
+   console.error(`[ERROR] Token presented in auth.js /storage/ not a string! `);
    return;
 }
 client.login(require(`./storage/auth`).token);
