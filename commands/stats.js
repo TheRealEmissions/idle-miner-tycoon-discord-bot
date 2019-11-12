@@ -1,7 +1,9 @@
 module.exports = class stats {
    constructor() {
-      (this.name = "stats"), (this.alias = ["statistics", "info"]);
+      this.name = "stats";
+      this.alias = ["statistics", "info"];
       this.usage = ".stats";
+      this.description = "View global stats on Idle Miner Tycoon";
    }
 
    userProfiles(client) {

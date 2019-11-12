@@ -3,6 +3,7 @@ module.exports = class select {
       this.name = "select";
       this.alias = ["sel", "se"];
       this.usage = ".select <mine number>";
+      this.description = "Select a mine";
    }
 
    async run(client, message, args) {

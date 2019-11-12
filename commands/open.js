@@ -4,6 +4,7 @@ module.exports = class open {
       this.alias = ["o"];
       this.usage = ".open";
       this.crates = new Map();
+      this.description = "Open a crate";
    }
 
    async run(client, message, args) {

@@ -3,6 +3,7 @@ module.exports = class test {
       this.name = "test";
       this.alias = [];
       this.usage = "-test";
+      this.description = "Test command for bot owner";
    }
 
    async run(client, message, args) {

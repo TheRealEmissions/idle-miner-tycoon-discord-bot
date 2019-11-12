@@ -3,6 +3,7 @@ module.exports = class setstatus {
       this.name = "setstatus";
       this.alias = ["ss"];
       this.usage = ".setstatus";
+      this.description = "Update your status on your profile";
    }
 
    async run(client, message, args) {

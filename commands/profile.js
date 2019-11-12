@@ -3,6 +3,7 @@ module.exports = class profile {
       this.name = "profile";
       this.alias = ["p"];
       this.usage = ".profile";
+      this.description = "View your or another user's profile";
    }
 
    async run(client, message, args) {

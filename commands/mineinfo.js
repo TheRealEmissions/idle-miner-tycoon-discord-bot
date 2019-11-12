@@ -3,6 +3,8 @@ module.exports = class mineinfo {
       this.name = "mineinfo";
       this.alias = ["mi"];
       this.usage = ".mineinfo";
+      this.description =
+         "View details on your currently selected or specific mine";
    }
 
    async run(client, message, args) {

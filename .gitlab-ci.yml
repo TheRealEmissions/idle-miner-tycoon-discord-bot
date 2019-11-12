@@ -1,0 +1,23 @@
+image: node:latest
+
+stages:
+  - start
+  - deploy
+  - finish
+  
+start:
+  stage: start
+  script:
+    - pm2 stop 1
+    - cd /home/emissions/bots/idle_miner_tycoon
+    
+deploy:
+  stage: deploy
+  script:
+    - git pull origin master
+    - npm update
+
+finish:
+  stage: finish
+  script:
+    - pm2 start index.js

@@ -88,7 +88,10 @@ class setupDatabase {
 
 module.exports = class start {
    constructor() {
-      (this.name = "start"), (this.alias = []), (this.usage = ".start");
+      this.name = "start";
+      this.alias = [];
+      this.usage = ".start";
+      this.description = "Start a new profile";
    }
 
    async run(client, message, args) {
@@ -135,7 +138,7 @@ module.exports = class start {
                      .setDescription(`** **`)
                      .addField(
                         `To begin:`,
-                        `You have been awarded a :star: Mine Crate. Open this with \`.open\`. This will unlock your first mine.\n \nFrom here, select your mine with \`.select 1\`, and begin earning money!`
+                        `You have been awarded a :star: Mine Crate. Open this with \`.open\`. This will unlock your first mine.\n \nFrom here, select your mine with \`.select\`, and begin earning money!`
                      )
                      .addField(
                         `Basic commands:`,
