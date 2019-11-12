@@ -9,5 +9,6 @@ module.exports = class test {
    async run(client, message, args) {
       message.channel.send(`success`);
       message.channel.send(`and the update worked!`);
+      message.channel.send(`again`);
    }
 };
