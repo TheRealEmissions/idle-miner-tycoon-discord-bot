@@ -14,7 +14,7 @@ start:
 deploy:
   stage: deploy
   script:
-    - cd /home/emissions/bots/idle_miner_tycoon && sudo git pull origin master && sudo npm update
+    - cd /home/emissions/bots/idle_miner_tycoon && sudo git pull origin master && npm update
 
 finish:
   stage: finish
