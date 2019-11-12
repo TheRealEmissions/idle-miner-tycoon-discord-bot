@@ -14,10 +14,9 @@ start:
 deploy:
   stage: deploy
   script:
-    - sudo git pull origin master
-    - sudo npm update
+    - cd /home/emissions/bots/idle_miner_tycoon && sudo git pull origin master && sudo npm update
 
 finish:
   stage: finish
   script:
-    - sudo pm2 start index.js --name "imt"
+    - cd /home/emissions/bots/idle_miner_tycoon && sudo pm2 start index.js --name "imt"
