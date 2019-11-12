@@ -40,6 +40,11 @@ module.exports = modules.mongoose.model(`userProfiles`, new modules.mongoose.Sch
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        required: false,
+        default: null
+    },
     points: {
         type: Number,
         required: false,

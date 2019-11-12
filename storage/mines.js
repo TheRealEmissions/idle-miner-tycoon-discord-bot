@@ -13,7 +13,10 @@
     6 -> Around $500,000/s
 
     Level 1-2 Upgrade = cost of 2 minutes of kgps
-    Increases by 5% (iterative) every level up
+    Increases by 5% (iterative) every level up (2 d.p.)
+
+    Level 1 backpack - 10 seconds worth of kg
+    Increases by 2.5% (iterative) every level up (2 d.p.)
 
 */
 module.exports = [{
