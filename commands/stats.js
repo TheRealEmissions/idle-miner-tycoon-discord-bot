@@ -61,8 +61,24 @@ module.exports = class stats {
             .setTitle(`**Idle Mining Statistics:**`)
             .addField(`Amount of users registered:`, userProfiles.users, true)
             .addField(`Amount of mines:`, userProfiles.mines, true)
-            .addField(`Total KG mined:`, guildMines.sumkg, true)
-            .addField(`Total $ earned:`, guildMines.sum$, true)
+            .addField(
+               `Total KG mined:`,
+               client.functions.formatNumber(guildMines.sumkg),
+               true
+            )
+            .addField(
+               `Total $ earned:`,
+               `$${client.functions.formatNumber(
+                  Number(guildMines.sum$.toFixed(2))
+               )}${
+                  client.functions
+                     .formatNumber(Number(guildMines.sum$.toFixed(2)))
+                     .split(".")[1].length == 1
+                     ? `0`
+                     : ""
+               }`,
+               true
+            )
             .addField(`Total amount of prestiges:`, guildMines.sumprest, true)
             .addField(`Total amount of rebirths:`, userProfiles.rebirths, true)
       );
