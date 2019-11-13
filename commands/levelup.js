@@ -82,7 +82,7 @@ module.exports = class {
                if (minedb.balance >= amountforlevel) {
                   db.mines.find(
                      x => x.index == client.mineSelected.get(message.author.id)
-                  ).balance -= amountforlevel;
+                  ).balance -= Number(amountforlevel.toFixed(2));
                   db.mines.find(
                      x => x.index == client.mineSelected.get(message.author.id)
                   ).level += 1;
