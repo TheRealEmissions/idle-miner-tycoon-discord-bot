@@ -135,8 +135,18 @@ module.exports = class {
                                           (mine.generated * mine.ppk).toFixed(2)
                                        )
                                     )
-                                    .split(".")[1].length == 1
-                                    ? `0`
+                                    .includes(".")
+                                    ? client.functions
+                                         .formatNumber(
+                                            Number(
+                                               (
+                                                  mine.generated * mine.ppk
+                                               ).toFixed(2)
+                                            )
+                                         )
+                                         .split(".")[1].length == 1
+                                       ? `0`
+                                       : ""
                                     : ""
                               }**`
                            )
