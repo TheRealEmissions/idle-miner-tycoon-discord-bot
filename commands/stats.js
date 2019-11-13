@@ -98,8 +98,12 @@ module.exports = class stats {
                )}${
                   client.functions
                      .formatNumber(Number(guildMines.sum$.toFixed(2)))
-                     .split(".")[1].length == 1
-                     ? `0`
+                     .includes(".")
+                     ? client.functions
+                          .formatNumber(Number(guildMines.sum$.toFixed(2)))
+                          .split(".")[1].length == 1
+                        ? `0`
+                        : ""
                      : ""
                }`,
                true
