@@ -128,7 +128,17 @@ module.exports = class {
                                     1
                                  )} for **$${client.functions.formatNumber(
                                  Number((mine.generated * mine.ppk).toFixed(2))
-                              )}**`
+                              )}${
+                                 client.functions
+                                    .formatNumber(
+                                       Number(
+                                          (mine.generated * mine.ppk).toFixed(2)
+                                       )
+                                    )
+                                    .split(".")[1].length == 1
+                                    ? `0`
+                                    : ""
+                              }**`
                            )
                      );
                      setTimeout(() => {
