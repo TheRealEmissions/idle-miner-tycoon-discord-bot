@@ -103,6 +103,26 @@ module.exports = class {
                        setTimeout(() => {
                         timeout.delete(message.author.id);
                        }, 2000);
+                       client.models.guildStats.findOne({
+                           "guild_id": message.guild.id
+                       }, (err, db) => {
+                           if (err) return console.error(err);
+                           sum_sells += 1;
+                           db.save((err) => {
+                               if (err) return console.error(err);
+                           });
+                       });
+                       client.models.guildMines.findOne({
+                           "guild_id": message.guild.id,
+                           "type": `${mine.type.charAt(0)}${mine.type.toLowerCase().slice(1)}`
+                       }, (err, db) => {
+                           if (err) return console.error(err);
+                           db.sum_kg += mine.generated;
+                           db.sum_money += mine.generated * mine.ppk;
+                           db.save((err) => {
+                               if (err) return console.error(err);
+                           });
+                       })
                    }
                });
             }
