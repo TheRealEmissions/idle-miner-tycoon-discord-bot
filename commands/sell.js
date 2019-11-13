@@ -139,7 +139,7 @@ module.exports = class {
                         },
                         (err, db) => {
                            if (err) return console.error(err);
-                           sum_sells += 1;
+                           db.sum_sells += 1;
                            db.save(err => {
                               if (err) return console.error(err);
                            });
