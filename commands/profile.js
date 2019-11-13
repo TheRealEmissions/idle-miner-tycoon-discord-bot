@@ -66,6 +66,16 @@ module.exports = class profile {
             },
             (err, db) => {
                if (err) return console.error(err);
+               if (!db) {
+                  message.channel.send(
+                     new client.modules.Discord.MessageEmbed()
+                        .setColor(message.guild.me.displayHexColor)
+                        .setDescription(
+                           `This user has not created a profile! <:RRRRRRRRRREEEEEEEEEEEEEEEEE:630505564950102026>`
+                        )
+                  );
+                  return;
+               }
                let embed = {
                   embed: {
                      color: message.guild.me.displayHexColor,

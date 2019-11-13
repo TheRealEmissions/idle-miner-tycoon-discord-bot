@@ -18,4 +18,4 @@ deploy:
 finish:
   stage: finish
   script:
-    - sudp pm2 start imt
+    - sudo pm2 start imt
