@@ -60,7 +60,13 @@ module.exports = class select {
                      mine.level
                   }\n\`Balance\` $${client.functions.formatNumber(
                      Number(mine.balance.toFixed(2))
-                  )}`
+                  )}${
+                     client.functions
+                        .formatNumber(Number(mine.balance.toFixed(2)))
+                        .split(".")[1].length == 1
+                        ? `0`
+                        : ""
+                  }`
                });
             }
             message.channel.send(embed).then(msg => {
