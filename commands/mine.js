@@ -56,7 +56,7 @@ module.exports = class {
                   (
                      mine.kgps *
                      120 *
-                     (1.05 ^ (mine.level - 1)) *
+                     (1.05 ^ (minedb.level - 1)) *
                      mine.ppk
                   ).toFixed(2)
                );
