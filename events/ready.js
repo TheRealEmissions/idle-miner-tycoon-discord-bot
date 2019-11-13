@@ -21,6 +21,14 @@ class database {
                      newdb.save(err => {
                         if (err) return reject(err);
                      });
+                  } else {
+                     if (!db.sum_rebirths) db.sum_rebirths = 0;
+                     if (!db.sum_sells) db.sum_sells = 0;
+                     if (!db.sum_levelups) db.sum_levelups = 0;
+                     if (!db.sum_points) db.sum_points = 0;
+                     db.save(err => {
+                        if (err) return console.error(err);
+                     });
                   }
                }
             );
