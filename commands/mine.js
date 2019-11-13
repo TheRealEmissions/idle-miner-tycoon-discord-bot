@@ -165,6 +165,7 @@ module.exports = class {
                ]
             }
          };
+         message.channel.send(JSON.stringify(mine));
          message.channel.send(embed);
       } else {
          message.channel.send(
