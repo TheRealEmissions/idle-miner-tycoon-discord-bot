@@ -161,6 +161,18 @@ module.exports = class {
                                  }`
                               )
                         );
+                        client.models.guildStats.findOne(
+                           {
+                              guild_id: message.guild.id
+                           },
+                           (err, db) => {
+                              if (err) return console.error(err);
+                              db.sum_levelups += 1;
+                              db.save(err => {
+                                 if (err) return console.error(err);
+                              });
+                           }
+                        );
                      }
                   });
                } else {
