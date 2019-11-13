@@ -59,7 +59,7 @@ module.exports = class {
             message.author.id,
             client.mineSelected.get(message.author.id)
          );
-         message.channel.send(mine);
+         message.channel.send(JSON.stringify(mine));
       } else {
          message.channel.send(
             new client.modules.Discord.MessageEmbed()
