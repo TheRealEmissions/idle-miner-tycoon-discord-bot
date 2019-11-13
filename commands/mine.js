@@ -14,7 +14,7 @@ module.exports = class {
             },
             (err, db) => {
                if (err) return console.error(err);
-               const minedb = db.find(x => x.index == index);
+               const minedb = db.mines.find(x => x.index == index);
                const mine = client.storage.mines.find(
                   x =>
                      x.type ==
