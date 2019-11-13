@@ -26,7 +26,13 @@ module.exports = class {
                let level = minedb.level;
                let balance = Number(minedb.balance.toFixed(2));
                let backpacksize = Number(
-                  (mine.kgps * 10 * (1.025 ^ (minedb.level - 1))).toFixed(2)
+                  (
+                     mine.kgps *
+                     10 *
+                     (1.025 ^ (minedb.level - 1)) *
+                     (1.02 ^ minedb.prestige) *
+                     (1.05 ^ db.rebirth)
+                  ).toFixed(2)
                );
                let time = Number(
                   (
@@ -34,7 +40,14 @@ module.exports = class {
                      new Date(minedb.lastsell_timestamp).getTime() / 1000
                   ).toFixed(2)
                );
-               let gen = Number((mine.kgps * time).toFixed(2));
+               let gen = Number(
+                  (
+                     mine.kgps *
+                     (1.035 ^ minedb.prestige) *
+                     (1.05 ^ db.rebirth) *
+                     time
+                  ).toFixed(2)
+               );
                if (gen >= backpacksize) gen = backpacksize;
                let percentbpfull = Number(
                   ((gen / backpacksize) * 100).toFixed(2)
