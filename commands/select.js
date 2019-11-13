@@ -63,8 +63,12 @@ module.exports = class select {
                   )}${
                      client.functions
                         .formatNumber(Number(mine.balance.toFixed(2)))
-                        .split(".")[1].length == 1
-                        ? `0`
+                        .includes(".")
+                        ? client.functions
+                             .formatNumber(Number(mine.balance.toFixed(2)))
+                             .split(".")[1].length == 1
+                           ? `0`
+                           : ""
                         : ""
                   }`
                });
