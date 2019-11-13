@@ -59,13 +59,13 @@ module.exports = class {
             message.author.id,
             client.mineSelected.get(message.author.id)
          );
-         console.log(mine);
+         message.channel.send(mine);
       } else {
          message.channel.send(
             new client.modules.Discord.MessageEmbed()
                .setColor(message.guild.me.displayHexColor)
                .setDescription(
-                  `You do not have a mine selected! Please select a mine with \`.mine\``
+                  `You do not have a mine selected! Please select a mine with \`.select\``
                )
          );
       }
