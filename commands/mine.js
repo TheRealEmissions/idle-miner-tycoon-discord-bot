@@ -53,10 +53,7 @@ module.exports = class {
                   ((gen / backpacksize) * 100).toFixed(2)
                );
                let amountforlevel = Number(
-                  (
-                     (mine.kgps * 120 * (1.05 ^ (mine.level - 1))) /
-                     mine.ppk
-                  ).toFixed(2)
+                  (mine.ppk * 120 * (1.05 ^ (mine.level - 1))).toFixed(2)
                );
                return resolve({
                   name: mine.type,
