@@ -76,63 +76,95 @@ module.exports = class {
    }
 
    async run(client, message, args) {
-    if (timeout.has(message.author.id)) {
-        return message.channel.send(new client.modules.Discord.MessageEmbed()
-        .setColor(message.guild.me.displayHexColor)
-        .setDescription(`You cannot run this command yet, you are on cooldown!`)
-       )
-    }
-    if (client.mineSelected.has(message.author.id)) {
+      if (timeout.has(message.author.id)) {
+         return message.channel.send(
+            new client.modules.Discord.MessageEmbed()
+               .setColor(message.guild.me.displayHexColor)
+               .setDescription(
+                  `You cannot run this command yet, you are on cooldown!`
+               )
+         );
+      }
+      if (client.mineSelected.has(message.author.id)) {
          client.models.userProfiles.findOne(
             {
                user_id: message.author.id
             },
-            (err, db) => {
+            async (err, db) => {
                if (err) return console.error(err);
                if (!db) {
                   return console.error(`what the fuck`);
                }
-               const mine = await this.mineInfo(client, message.author.id, client.mineSelected.get(message.author.id));
-               db.mines.find(x => x.index == client.mineSelected.get(message.author.id)).lastsell_timestamp = new Date();
-               db.mines.find(x => x.index == client.mineSelected.get(message.author.id)).balance += mine.generated * mine.ppk;
+               const mine = await this.mineInfo(
+                  client,
+                  message.author.id,
+                  client.mineSelected.get(message.author.id)
+               );
+               db.mines.find(
+                  x => x.index == client.mineSelected.get(message.author.id)
+               ).lastsell_timestamp = new Date();
+               db.mines.find(
+                  x => x.index == client.mineSelected.get(message.author.id)
+               ).balance += mine.generated * mine.ppk;
                db.markModified("mines");
-               db.save((err) => {
-                   if (err) return console.error(err);
-                   else {
-                       timeout.add(message.author.id);
-                       message.channel.send(new client.modules.Discord.MessageEmbed()
-                        .setColor(message.guild.me.displayHexColor)
-                        .setDescription(`Sold **${mine.generated} KG** of ${mine.type.charAt(0)}${mine.type.toLowerCase().slice(1)} for **$${client.functions.formatNumber(mine.generated * mine.ppk)}**`)
-                       )
-                       setTimeout(() => {
+               db.save(err => {
+                  if (err) return console.error(err);
+                  else {
+                     timeout.add(message.author.id);
+                     message.channel.send(
+                        new client.modules.Discord.MessageEmbed()
+                           .setColor(message.guild.me.displayHexColor)
+                           .setDescription(
+                              `Sold **${
+                                 mine.generated
+                              } KG** of ${mine.type.charAt(
+                                 0
+                              )}${mine.type
+                                 .toLowerCase()
+                                 .slice(
+                                    1
+                                 )} for **$${client.functions.formatNumber(
+                                 mine.generated * mine.ppk
+                              )}**`
+                           )
+                     );
+                     setTimeout(() => {
                         timeout.delete(message.author.id);
-                       }, 2000);
-                       client.models.guildStats.findOne({
-                           "guild_id": message.guild.id
-                       }, (err, db) => {
+                     }, 2000);
+                     client.models.guildStats.findOne(
+                        {
+                           guild_id: message.guild.id
+                        },
+                        (err, db) => {
                            if (err) return console.error(err);
                            sum_sells += 1;
-                           db.save((err) => {
-                               if (err) return console.error(err);
+                           db.save(err => {
+                              if (err) return console.error(err);
                            });
-                       });
-                       client.models.guildMines.findOne({
-                           "guild_id": message.guild.id,
-                           "type": `${mine.type.charAt(0)}${mine.type.toLowerCase().slice(1)}`
-                       }, (err, db) => {
+                        }
+                     );
+                     client.models.guildMines.findOne(
+                        {
+                           guild_id: message.guild.id,
+                           type: `${mine.type.charAt(
+                              0
+                           )}${mine.type.toLowerCase().slice(1)}`
+                        },
+                        (err, db) => {
                            if (err) return console.error(err);
                            db.sum_kg += mine.generated;
                            db.sum_money += mine.generated * mine.ppk;
-                           db.save((err) => {
-                               if (err) return console.error(err);
+                           db.save(err => {
+                              if (err) return console.error(err);
                            });
-                       })
-                   }
+                        }
+                     );
+                  }
                });
             }
          );
-    } else {
-        message.channel.send(
+      } else {
+         message.channel.send(
             new client.modules.Discord.MessageEmbed()
                .setColor(message.guild.me.displayHexColor)
                .setDescription(
