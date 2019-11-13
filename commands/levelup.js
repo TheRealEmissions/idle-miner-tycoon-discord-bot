@@ -94,8 +94,7 @@ module.exports = class {
                               x =>
                                  x.index ==
                                  client.mineSelected.get(message.author.id)
-                                    .level
-                           )
+                           ).level
                      )
                   ) {
                      db.points += this.rewards.find(
@@ -105,8 +104,7 @@ module.exports = class {
                               x =>
                                  x.index ==
                                  client.mineSelected.get(message.author.id)
-                                    .level
-                           )
+                           ).level
                      ).points;
                   }
                   db.markModified("mines");
@@ -143,10 +141,22 @@ module.exports = class {
                                                 x.index ==
                                                 client.mineSelected.get(
                                                    message.author.id
-                                                ).level
-                                          )
+                                                )
+                                          ).level
                                     )
-                                       ? `\n**+${db.points}** Points`
+                                       ? `\n**+${
+                                            this.rewards.find(
+                                               x =>
+                                                  x.level ==
+                                                  db.mines.find(
+                                                     x =>
+                                                        x.index ==
+                                                        client.mineSelected.get(
+                                                           message.author.id
+                                                        )
+                                                  ).level
+                                            ).points
+                                         }** Points`
                                        : ""
                                  }`
                               )
