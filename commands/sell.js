@@ -100,6 +100,10 @@ module.exports = class {
                    if (err) return console.error(err);
                    else {
                        timeout.add(message.author.id);
+                       message.channel.send(new client.modules.Discord.MessageEmbed()
+                        .setColor(message.guild.me.displayHexColor)
+                        .setDescription(`Sold **${mine.generated} KG** of ${mine.type.charAt(0)}${mine.type.toLowerCase().slice(1)} for **$${client.functions.formatNumber(mine.generated * mine.ppk)}**`)
+                       )
                        setTimeout(() => {
                         timeout.delete(message.author.id);
                        }, 2000);
