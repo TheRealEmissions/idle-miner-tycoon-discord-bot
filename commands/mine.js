@@ -130,7 +130,13 @@ module.exports = class {
                   },
                   {
                      name: `Balance`,
-                     value: `$${client.functions.formatNumber(mine.balance)}`
+                     value: `$${client.functions.formatNumber(mine.balance)}${
+                        client.functions
+                           .formatNumber(mine.balance)
+                           .split(".")[1].length == 1
+                           ? `0`
+                           : ""
+                     }`
                   }
                ]
             }
