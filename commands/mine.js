@@ -126,7 +126,21 @@ module.exports = class {
                                    100
                                 ).toFixed(2)
                              )
-                     }%)`
+                     }%)`,
+                     inline: true
+                  },
+                  {
+                     name: `Price To Level Up`,
+                     value: `$${client.functions.formatNumber(
+                        mine.amountforlevel
+                     )}${
+                        client.functions
+                           .formatNumber(mine.amountforlevel)
+                           .split(".")[1].length == 1
+                           ? `0`
+                           : ""
+                     }`,
+                     inline: true
                   },
                   {
                      name: `Balance`,
