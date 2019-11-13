@@ -24,6 +24,8 @@ module.exports = class profile {
                         String(db.status) !== "null"
                            ? db.status
                            : `Did you know? You can set a custom status here with \`.setstatus\``
+                     }\n** **\n\`Rebirth\` ${db.rebirth}\n\`Points\` ${
+                        db.points
                      }`,
                      thumbnail: {
                         url: `${message.author.avatarURL()}`
@@ -89,7 +91,9 @@ module.exports = class profile {
                         user.username.endsWith("s") ? `'` : `'s`
                      } Profile:**`,
                      description:
-                        String(db.status) !== "null" ? db.status : null,
+                        String(db.status) !== "null"
+                           ? `${db.status}\n** **\n\`Rebirth\` ${db.rebirth}\n\`Points\` ${db.points}`
+                           : `\n** **\n\`Rebirth\` ${db.rebirth}\n\`Points\` ${db.points}`,
                      thumbnail: {
                         url: `${user.avatarURL()}`
                      },
