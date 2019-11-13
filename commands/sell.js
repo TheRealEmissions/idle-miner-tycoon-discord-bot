@@ -4,6 +4,7 @@ module.exports = class {
       this.name = "sell";
       this.alias = ["s"];
       this.usage = ".sell";
+      this.description = "Sell items mined in your currently selected mine";
    }
 
    mineInfo(client, id, index) {
