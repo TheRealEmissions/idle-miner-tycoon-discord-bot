@@ -49,7 +49,7 @@ module.exports = class profile {
                      value: `\`Prestige\` ${mine.prestige}\n\`Level\` ${
                         mine.level
                      }\n\`Balance\` $${client.functions.formatNumber(
-                        mine.balance
+                        Number(mine.balance.toFixed(2))
                      )}`,
                      inline: true
                   });
