@@ -173,7 +173,9 @@ module.exports = class {
                            )}** and you only have **$${client.functions.formatNumber(
                               minedb.balance
                            )}**. You need $${client.functions.formatNumber(
-                              amountforlevel - minedb.balance
+                              Number(
+                                 (amountforlevel - minedb.balance).toFixed(2)
+                              )
                            )} more.`
                         )
                   );
