@@ -30,9 +30,9 @@ module.exports = class {
                   (
                      mine.kgps *
                      10 *
-                     (1.025 ^ (minedb.level - 1)) *
-                     (1.02 ^ minedb.prestige) *
-                     (1.05 ^ db.rebirth)
+                     Math.pow(1.025, minedb.level - 1) *
+                     Math.pow(1.02, minedb.prestige) *
+                     Math.pow(1.05, db.rebirth)
                   ).toFixed(2)
                );
                let time = Number(
@@ -44,8 +44,8 @@ module.exports = class {
                let gen = Number(
                   (
                      mine.kgps *
-                     (1.035 ^ minedb.prestige) *
-                     (1.05 ^ db.rebirth) *
+                     Math.pow(1.035, minedb.prestige) *
+                     Math.pow(1.05, db.rebirth) *
                      time
                   ).toFixed(2)
                );
@@ -57,7 +57,7 @@ module.exports = class {
                   (
                      mine.kgps *
                      120 *
-                     (1.05 ^ (mine.level - 1)) *
+                     Math.pow(1.05, minedb.level - 1) *
                      mine.ppk
                   ).toFixed(2)
                );
