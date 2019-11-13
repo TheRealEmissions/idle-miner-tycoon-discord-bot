@@ -136,7 +136,7 @@ module.exports = class {
                      )}${
                         String(
                            client.functions.formatNumber(mine.amountforlevel)
-                        ).contains(".")
+                        ).includes(".")
                            ? String(
                                 client.functions.formatNumber(
                                    mine.amountforlevel
@@ -153,7 +153,7 @@ module.exports = class {
                      value: `$${client.functions.formatNumber(mine.balance)}${
                         String(
                            client.functions.formatNumber(mine.balance)
-                        ).contains(".")
+                        ).includes(".")
                            ? String(
                                 client.functions.formatNumber(mine.balance)
                              ).split(".")[1].length == 1
