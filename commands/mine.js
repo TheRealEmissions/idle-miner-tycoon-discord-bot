@@ -100,14 +100,14 @@ module.exports = class {
                      name: `Level`,
                      value: `${mine.level} (${
                         Number(
-                           ((mine.amountforlevel / mine.balance) * 100).toFixed(
+                           ((mine.balance / mine.amountforlevel) * 100).toFixed(
                               2
                            )
                         ) >= 100
                            ? `100`
                            : Number(
                                 (
-                                   (mine.amountforlevel / mine.balance) *
+                                   (mine.balance / mine.amountforlevel) *
                                    100
                                 ).toFixed(2)
                              )

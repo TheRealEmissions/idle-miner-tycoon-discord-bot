@@ -8,7 +8,7 @@ stages:
 start:
   stage: start
   script:
-    - sudo pm2 stop imt
+    - pm2 stop imt
     
 deploy:
   stage: deploy
@@ -18,4 +18,4 @@ deploy:
 finish:
   stage: finish
   script:
-    - sudo pm2 start imt
+    - pm2 start imt
