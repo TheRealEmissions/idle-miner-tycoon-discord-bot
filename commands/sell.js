@@ -117,9 +117,9 @@ module.exports = class {
                            .setDescription(
                               `Sold **${
                                  mine.generated
-                              } KG** of ${mine.type.charAt(
+                              } KG** of ${mine.name.charAt(
                                  0
-                              )}${mine.type
+                              )}${mine.name
                                  .toLowerCase()
                                  .slice(
                                     1
@@ -146,9 +146,9 @@ module.exports = class {
                      client.models.guildMines.findOne(
                         {
                            guild_id: message.guild.id,
-                           type: `${mine.type.charAt(
+                           type: `${mine.name.charAt(
                               0
-                           )}${mine.type.toLowerCase().slice(1)}`
+                           )}${mine.name.toLowerCase().slice(1)}`
                         },
                         (err, db) => {
                            if (err) return console.error(err);
