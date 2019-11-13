@@ -127,7 +127,7 @@ module.exports = class {
                                  .slice(
                                     1
                                  )} for **$${client.functions.formatNumber(
-                                 mine.generated * mine.ppk
+                                 Number((mine.generated * mine.ppk).toFixed(2))
                               )}**`
                            )
                      );
