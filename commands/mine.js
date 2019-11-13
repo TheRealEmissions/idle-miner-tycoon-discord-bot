@@ -134,9 +134,9 @@ module.exports = class {
                      value: `$${client.functions.formatNumber(
                         mine.amountforlevel
                      )}${
-                        client.functions
-                           .formatNumber(mine.amountforlevel)
-                           .split(".")[1].length == 1
+                        String(
+                           client.functions.formatNumber(mine.amountforlevel)
+                        ).split(".")[1].length == 1
                            ? `0`
                            : ""
                      }`,
