@@ -39,13 +39,22 @@ module.exports = class {
                let percentbpfull = Number(
                   ((gen / backpacksize) * 100).toFixed(2)
                );
+               let amountforlevel = Number(
+                  (
+                     (mine.kgps * 120 * (1.05 ^ (mine.level - 1))) /
+                     mine.ppk
+                  ).toFixed(2)
+               );
                return resolve({
+                  name: mine.type,
+                  rarity: mine.rarity,
                   prestige: prestige,
                   level: level,
                   balance: balance,
                   backpacksize: backpacksize,
                   generated: gen,
-                  percentbpfull: percentbpfull
+                  percentbpfull: percentbpfull,
+                  amountforlevel: amountforlevel
                });
             }
          );
@@ -59,6 +68,58 @@ module.exports = class {
             message.author.id,
             client.mineSelected.get(message.author.id)
          );
+         let embed = {
+            embed: {
+               color: message.guild.me.displayHexColor,
+               title: `${message.author.name}${
+                  message.author.name.endsWith("s") ? `'` : `'s`
+               } ${mine.name} Mine:`,
+               description: `Backpack: [${
+                  mine.percentbpfull >= 100
+                     ? `:white_small_square::white_small_square::white_small_square::white_small_square::white_small_square:`
+                     : mine.percentbpfull >= 80
+                     ? `:white_small_square::white_small_square::white_small_square::white_small_square::black_small_square:`
+                     : mine.percentbpfull >= 60
+                     ? `:white_small_square::white_small_square::white_small_square::black_small_square::black_small_square:`
+                     : mine.percentbpfull >= 40
+                     ? `:white_small_square::white_small_square::black_small_square::black_small_square::black_small_square:`
+                     : mine.percentbpfull >= 20
+                     ? `:white_small_square::black_small_square::black_small_square::black_small_square::black_small_square:`
+                     : `:black_small_square::black_small_square::black_small_square::black_small_square::black_small_square:`
+               }] **${mine.percentbpfull}%**`,
+               fields: [
+                  {
+                     name: `Rarity`,
+                     value: client.functions.noToStarEmoji(mine.rarity)
+                  },
+                  {
+                     name: `Prestige`,
+                     value: mine.prestige
+                  },
+                  {
+                     name: `Level`,
+                     value: `${mine.level} (${
+                        Number(
+                           ((mine.amountforlevel / mine.balance) * 100).toFixed(
+                              2
+                           )
+                        ) >= 100
+                           ? `100`
+                           : Number(
+                                (
+                                   (mine.amountforlevel / mine.balance) *
+                                   100
+                                ).toFixed(2)
+                             )
+                     }%)`
+                  },
+                  {
+                     name: `Balance`,
+                     value: `$${client.functions.formatNumber(mine.balance)}`
+                  }
+               ]
+            }
+         };
          message.channel.send(JSON.stringify(mine));
       } else {
          message.channel.send(
