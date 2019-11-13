@@ -59,7 +59,7 @@ module.exports = class select {
                   value: `\`Prestige\` ${mine.prestige}\n\`Level\` ${
                      mine.level
                   }\n\`Balance\` $${client.functions.formatNumber(
-                     mine.balance
+                     Number(mine.balance.toFixed(2))
                   )}`
                });
             }
