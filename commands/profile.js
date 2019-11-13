@@ -50,7 +50,13 @@ module.exports = class profile {
                         mine.level
                      }\n\`Balance\` $${client.functions.formatNumber(
                         Number(mine.balance.toFixed(2))
-                     )}`,
+                     )}${
+                        client.functions
+                           .formatNumber(Number(mine.balance.toFixed(2)))
+                           .split(".")[1].length == 1
+                           ? `0`
+                           : ""
+                     }`,
                      inline: true
                   });
                }
