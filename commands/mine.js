@@ -71,8 +71,8 @@ module.exports = class {
          let embed = {
             embed: {
                color: message.guild.me.displayHexColor,
-               title: `${message.author.name}${
-                  message.author.name.endsWith("s") ? `'` : `'s`
+               title: `${message.author.username}${
+                  message.author.username.endsWith("s") ? `'` : `'s`
                } ${mine.name} Mine:`,
                description: `Backpack: [${
                   mine.percentbpfull >= 100
@@ -120,7 +120,7 @@ module.exports = class {
                ]
             }
          };
-         message.channel.send(JSON.stringify(mine));
+         message.channel.send(embed);
       } else {
          message.channel.send(
             new client.modules.Discord.MessageEmbed()
