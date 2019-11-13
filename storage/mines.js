@@ -72,7 +72,7 @@ module.exports = [
       type: "Francium",
       rarity: 6,
       ppk: 35000000,
-      kgps: 0.014
+      kgps: 0.01
    },
    {
       type: "Beryllium",
@@ -106,9 +106,9 @@ module.exports = [
    },
    {
       type: "Radium",
-      rarity: 1,
+      rarity: 5,
       ppk: 5000000,
-      kgps: 0.0002
+      kgps: 0.02
    },
    {
       type: "Scandium",
@@ -190,9 +190,9 @@ module.exports = [
    },
    {
       type: "Seaborgium",
-      rarity: 4,
+      rarity: 5,
       ppk: 10000000,
-      kgps: 0.005
+      kgps: 0.01
    },
    {
       type: "Manganese",
@@ -214,9 +214,9 @@ module.exports = [
    },
    {
       type: "Bohrium",
-      rarity: 5,
+      rarity: 6,
       ppk: 11000000,
-      kgps: 0.009
+      kgps: 0.05
    },
    {
       type: "Iron",
@@ -238,9 +238,9 @@ module.exports = [
    },
    {
       type: "Hassium",
-      rarity: 4,
+      rarity: 6,
       ppk: 17000000,
-      kgps: 0.0029
+      kgps: 0.03
    },
    {
       type: "Cobalt",
@@ -262,9 +262,9 @@ module.exports = [
    },
    {
       type: "Meitnerium",
-      rarity: 1,
+      rarity: 6,
       ppk: 17500000,
-      kgps: 0.000057
+      kgps: 0.03
    },
    {
       type: "Nickel",
@@ -286,9 +286,9 @@ module.exports = [
    },
    {
       type: "Darmstadtium",
-      rarity: 2,
+      rarity: 6,
       ppk: 12250000,
-      kgps: 0.00065
+      kgps: 0.04
    },
    {
       type: "Copper",
@@ -310,9 +310,9 @@ module.exports = [
    },
    {
       type: "Roentgenium",
-      rarity: 1,
+      rarity: 6,
       ppk: 11500000,
-      kgps: 0.000087
+      kgps: 0.04
    },
    {
       type: "Zinc",
@@ -336,7 +336,7 @@ module.exports = [
       type: "Copernicium",
       rarity: 6,
       ppk: 16000000,
-      kgps: 0.031
+      kgps: 0.03
    },
    {
       type: "Boron",
@@ -372,7 +372,7 @@ module.exports = [
       type: "Nihonium",
       rarity: 5,
       ppk: 18250000,
-      kgps: 0.0055
+      kgps: 0.01
    },
    {
       type: "Carbon",
@@ -406,9 +406,9 @@ module.exports = [
    },
    {
       type: "Flerovium",
-      rarity: 3,
+      rarity: 5,
       ppk: 9500000,
-      kgps: 0.0021
+      kgps: 0.01
    },
    {
       type: "Nitrogen",
@@ -448,9 +448,9 @@ module.exports = [
    },
    {
       type: "Moscovium",
-      rarity: 5,
+      rarity: 6,
       ppk: 13500000,
-      kgps: 0.0074
+      kgps: 0.04
    },
    {
       type: "Oxygen",
@@ -478,15 +478,15 @@ module.exports = [
    },
    {
       type: "Polonium",
-      rarity: 5,
+      rarity: 6,
       ppk: 16000000,
-      kgps: 0.0063
+      kgps: 0.03
    },
    {
       type: "Livermorium",
-      rarity: 5,
+      rarity: 6,
       ppk: 18000000,
-      kgps: 0.0056
+      kgps: 0.02
    },
    {
       type: "Fluorine",
@@ -526,9 +526,9 @@ module.exports = [
    },
    {
       type: "Tennessine",
-      rarity: 2,
+      rarity: 5,
       ppk: 10255010,
-      kgps: 0.00078
+      kgps: 0.01
    },
    {
       type: "Helium",
@@ -568,15 +568,15 @@ module.exports = [
    },
    {
       type: "Oganesson",
-      rarity: 4,
+      rarity: 6,
       ppk: 16250000,
-      kgps: 0.0031
+      kgps: 0.03
    },
    {
       type: "Diamond",
-      rarity: 5,
+      rarity: 6,
       ppk: 16250000,
-      kgps: 0.0062
+      kgps: 0.03
    },
    {
       type: "Emerald",
