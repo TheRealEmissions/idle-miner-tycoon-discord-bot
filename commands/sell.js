@@ -107,7 +107,7 @@ module.exports = class {
                ).lastsell_timestamp = new Date();
                db.mines.find(
                   x => x.index == client.mineSelected.get(message.author.id)
-               ).balance += mine.generated * mine.ppk;
+               ).balance += Number((mine.generated * mine.ppk).toFixed(2));
                db.markModified("mines");
                db.save(err => {
                   if (err) return console.error(err);
@@ -154,8 +154,10 @@ module.exports = class {
                         },
                         (err, db) => {
                            if (err) return console.error(err);
-                           db.sum_kg += mine.generated;
-                           db.sum_money += mine.generated * mine.ppk;
+                           db.sum_kg += Number(mine.generated.toFixed(2));
+                           db.sum_money += Number(
+                              (mine.generated * mine.ppk).toFixed(2)
+                           );
                            db.save(err => {
                               if (err) return console.error(err);
                            });
