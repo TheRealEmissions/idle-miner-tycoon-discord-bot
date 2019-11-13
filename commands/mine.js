@@ -136,8 +136,14 @@ module.exports = class {
                      )}${
                         String(
                            client.functions.formatNumber(mine.amountforlevel)
-                        ).split(".")[1].length == 1
-                           ? `0`
+                        ).contains(".")
+                           ? String(
+                                client.functions.formatNumber(
+                                   mine.amountforlevel
+                                )
+                             ).split(".")[1].length == 1
+                              ? `0`
+                              : ""
                            : ""
                      }`,
                      inline: true
@@ -147,8 +153,12 @@ module.exports = class {
                      value: `$${client.functions.formatNumber(mine.balance)}${
                         String(
                            client.functions.formatNumber(mine.balance)
-                        ).split(".")[1].length == 1
-                           ? `0`
+                        ).contains(".")
+                           ? String(
+                                client.functions.formatNumber(mine.balance)
+                             ).split(".")[1].length == 1
+                              ? `0`
+                              : ""
                            : ""
                      }`
                   }
