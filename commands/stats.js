@@ -88,7 +88,19 @@ module.exports = class stats {
             .addField(`Amount of mines:`, userProfiles.mines, true)
             .addField(
                `Total KG mined:`,
-               client.functions.formatNumber(guildMines.sumkg),
+               `${client.functions.formatNumber(
+                  Number(guildMines.sumkg.toFixed(2))
+               )}${
+                  client.functions
+                     .formatNumber(Number(guildMines.sumkg.toFixed(2)))
+                     .includes(".")
+                     ? client.functions
+                          .formatNumber(Number(guildMines.sumkg.toFixed(2)))
+                          .split(".")[1].length == 1
+                        ? `0`
+                        : ""
+                     : ""
+               }`,
                true
             )
             .addField(
