@@ -48,6 +48,36 @@ module.exports = class crateHandler {
                   star: 6
                };
                break;
+            case "sc1":
+               obj = {
+                  type: "STANDARDCRATE",
+                  star: 1
+               };
+            case "sc2":
+               obj = {
+                  type: "STANDARDCRATE",
+                  star: 2
+               };
+            case "sc3":
+               obj = {
+                  type: "STANDARDCRATE",
+                  star: 3
+               };
+            case "sc4":
+               obj = {
+                  type: "STANDARDCRATE",
+                  star: 4
+               };
+            case "sc5":
+               obj = {
+                  type: "STANDARDCRATE",
+                  star: 5
+               };
+            case "sc6":
+               obj = {
+                  type: "STANDARDCRATE",
+                  star: 6
+               };
          }
          return resolve(obj);
       });
@@ -58,6 +88,9 @@ module.exports = class crateHandler {
          let id = await this.idToObj();
          if (id.type == "MINECRATE") {
             this.openMineCrate(id.star);
+         }
+         if (id.type == "STANDARDCRATE") {
+            return;
          }
       });
    }
@@ -143,7 +176,7 @@ module.exports = class crateHandler {
             },
             (err, db) => {
                if (err) return reject(err);
-               db.mine_crates.find(x => x.star == 1).amount -= 1;
+               db.mine_crates.find(x => x.star == star).amount -= 1;
                db.markModified("mine_crates");
                db.save(err => {
                   if (err) return reject(err);
