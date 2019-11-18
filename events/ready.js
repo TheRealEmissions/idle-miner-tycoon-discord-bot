@@ -9,10 +9,9 @@ class database {
    userCratesCheck() {
       return new Promise(async (resolve, reject) => {
          for (const user of this.client.users) {
-            console.log(user);
             this.client.models.userCrates.findOne(
                {
-                  user_id: user
+                  user_id: user.id
                },
                (err, db) => {
                   if (err) return reject(err);
