@@ -15,6 +15,7 @@ class database {
                },
                (err, db) => {
                   if (err) return reject(err);
+                  if (!db) return;
                   let cs1 = db.mine_crates;
                   let cs2 = db.standard_crates;
                   if (db.mine_crates.length < 6) {
