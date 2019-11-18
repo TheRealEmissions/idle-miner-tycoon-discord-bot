@@ -185,7 +185,7 @@ module.exports = class open {
                      let str = `\n${c.amount}x ${client.functions.noToStarEmoji(
                         c.star
                      )} \`${no}\``;
-                     minecrates = minecrates.concat(str);
+                     string = string.concat(str);
                   }
                   return resolve(string);
                }
