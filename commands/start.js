@@ -69,12 +69,19 @@ class setupDatabase {
             },
             (err, db) => {
                if (err) return reject(err);
-               let x = 1;
-               while (x <= 6) {
+               let mcx = 1;
+               while (mcx <= 6) {
                   db.mine_crates.push({
-                     star: x
+                     star: mcx
                   });
-                  x++;
+                  mcx++;
+               }
+               let scx = 1;
+               while (scx <= 6) {
+                  db.standard_crates.push({
+                     star: scx
+                  });
+                  scx++;
                }
                db.save(err => {
                   if (err) return reject(err);

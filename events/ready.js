@@ -3,6 +3,50 @@ class database {
       this.client = client;
       this.guildMines();
       this.guildStats();
+      this.userCratesCheck();
+   }
+
+   userCratesCheck() {
+      return new Promise(async (resolve, reject) => {
+         for (const user of this.client.users) {
+            this.client.models.userCrates.findOne(
+               {
+                  user_id: user
+               },
+               (err, db) => {
+                  if (err) return reject(err);
+                  let cs1 = db.mine_crates;
+                  let cs2 = db.standard_crates;
+                  if (db.mine_crates.length < 6) {
+                     db.mine_crates = [];
+                     let ax = 1;
+                     while (ax <= 6) {
+                        db.mine_crates.push({
+                           star: ax
+                        });
+                        ax++;
+                     }
+                  }
+                  if (db.standard_crates.length < 6) {
+                     db.standard_crates = [];
+                     let bx = 1;
+                     while (bx <= 6) {
+                        db.standard_crates.push({
+                           star: bx
+                        });
+                        bx++;
+                     }
+                  }
+                  if (cs1 == db.mine_crates && cs2 == db.standard_crates) {
+                     return;
+                  } else
+                     db.save(err => {
+                        if (err) return reject(err);
+                     });
+               }
+            );
+         }
+      });
    }
 
    guildStats() {
