@@ -56,6 +56,17 @@ module.exports = class {
                                                 else return;
                                             });
                                         });
+                                        client.models.guildStats.findOne({
+                                            "guild_id": message.guild.id
+                                        }, (err, db) => {
+                                            if (err) return console.error(err);
+                                            if (!db) return;
+                                            db.sum_points += 10;
+                                            db.save((err) => {
+                                                if (err) return console.error(err);
+                                                else return;
+                                            });
+                                        })
                                     }
                                 });
                             }

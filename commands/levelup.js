@@ -4,8 +4,7 @@ module.exports = class {
       this.alias = ["lu", "up"];
       this.usage = ".levelup";
       this.description = "Level up your currently selected mine";
-      this.rewards = [
-         {
+      this.rewards = [{
             level: 2,
             points: 2
          },
@@ -54,8 +53,7 @@ module.exports = class {
 
    async run(client, message, args) {
       if (client.mineSelected.has(message.author.id)) {
-         client.models.userProfiles.findOne(
-            {
+         client.models.userProfiles.findOne({
                user_id: message.author.id
             },
             (err, db) => {
@@ -65,8 +63,8 @@ module.exports = class {
                );
                const mine = client.storage.mines.find(
                   x =>
-                     x.type ==
-                     `${minedb.type.charAt(0)}${minedb.type
+                  x.type ==
+                  `${minedb.type.charAt(0)}${minedb.type
                         .toLowerCase()
                         .slice(1)}`
                );
@@ -89,22 +87,22 @@ module.exports = class {
                   if (
                      this.rewards.find(
                         x =>
-                           x.level ==
-                           db.mines.find(
-                              x =>
-                                 x.index ==
-                                 client.mineSelected.get(message.author.id)
-                           ).level
+                        x.level ==
+                        db.mines.find(
+                           x =>
+                           x.index ==
+                           client.mineSelected.get(message.author.id)
+                        ).level
                      )
                   ) {
                      db.points += this.rewards.find(
                         x =>
-                           x.level ==
-                           db.mines.find(
-                              x =>
-                                 x.index ==
-                                 client.mineSelected.get(message.author.id)
-                           ).level
+                        x.level ==
+                        db.mines.find(
+                           x =>
+                           x.index ==
+                           client.mineSelected.get(message.author.id)
+                        ).level
                      ).points;
                   }
                   db.markModified("mines");
@@ -113,10 +111,10 @@ module.exports = class {
                      else {
                         message.channel.send(
                            new client.modules.Discord.MessageEmbed()
-                              .setColor(message.guild.me.displayHexColor)
-                              .setTitle(`Upgraded!`)
-                              .setDescription(
-                                 `Upgraded your **${minedb.type.charAt(
+                           .setColor(message.guild.me.displayHexColor)
+                           .setTitle(`Upgraded!`)
+                           .setDescription(
+                              `Upgraded your **${minedb.type.charAt(
                                     0
                                  )}${minedb.type
                                     .toLowerCase()
@@ -129,10 +127,10 @@ module.exports = class {
                                           )
                                     ).level
                                  }**! :partying_face:`
-                              )
-                              .addField(
-                                 `Changes:`,
-                                 `**+5%** Upgrade Cost\n**+2.5%** Backpack Size${
+                           )
+                           .addField(
+                              `Changes:`,
+                              `**+5%** Upgrade Cost\n**+2.5%** Backpack Size${
                                     this.rewards.find(
                                        x =>
                                           x.level ==
@@ -159,16 +157,18 @@ module.exports = class {
                                          }** Points`
                                        : ""
                                  }`
-                              )
+                           )
                         );
-                        client.models.guildStats.findOne(
-                           {
+                        client.models.guildStats.findOne({
                               guild_id: message.guild.id
                            },
-                           (err, db) => {
+                           (err, d) => {
                               if (err) return console.error(err);
-                              db.sum_levelups += 1;
-                              db.save(err => {
+                              d.sum_levelups += 1;
+                              if (this.rewards.find(x => x.level == db.mines.find(x => x.index == client.mineSelected.get(message.author.id).level))) {
+                                 d.sum_points += this.rewards.find(x => x.level == db.ines.find(x => x.index == client.mineSelected.get(message.author.id).level).points)
+                              }
+                              d.save(err => {
                                  if (err) return console.error(err);
                               });
                            }
@@ -178,9 +178,9 @@ module.exports = class {
                } else {
                   message.channel.send(
                      new client.modules.Discord.MessageEmbed()
-                        .setColor(message.guild.me.displayHexColor)
-                        .setDescription(
-                           `You cannot afford this upgrade! It costs **$${client.functions.formatNumber(
+                     .setColor(message.guild.me.displayHexColor)
+                     .setDescription(
+                        `You cannot afford this upgrade! It costs **$${client.functions.formatNumber(
                               amountforlevel
                            )}** and you only have **$${client.functions.formatNumber(
                               minedb.balance
@@ -189,7 +189,7 @@ module.exports = class {
                                  (amountforlevel - minedb.balance).toFixed(2)
                               )
                            )} more.`
-                        )
+                     )
                   );
                }
             }
@@ -197,10 +197,10 @@ module.exports = class {
       } else {
          message.channel.send(
             new client.modules.Discord.MessageEmbed()
-               .setColor(message.guild.me.displayHexColor)
-               .setDescription(
-                  `You do not have a mine selected! Please select a mine with \`.select\``
-               )
+            .setColor(message.guild.me.displayHexColor)
+            .setDescription(
+               `You do not have a mine selected! Please select a mine with \`.select\``
+            )
          );
       }
    }
