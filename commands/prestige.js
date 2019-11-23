@@ -1,7 +1,7 @@
 module.exports = class {
     constructor() {
         this.name = 'prestige';
-        this.alias = ['p', 'pres'];
+        this.alias = ['pr', 'pres'];
         this.usage = '.prestige';
         this.description = "Prestige your currently selected mine";
     }
