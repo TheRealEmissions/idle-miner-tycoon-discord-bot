@@ -1,3 +1,4 @@
 module.exports = {
-    crateHandler: require(`./methods/crateHandler`)
+    crateHandler: require(`./methods/crateHandler`),
+    addPoints: require(`./methods/addPoints`)
 }

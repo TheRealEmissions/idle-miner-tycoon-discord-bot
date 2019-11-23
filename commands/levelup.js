@@ -56,7 +56,7 @@ module.exports = class {
          client.models.userProfiles.findOne({
                user_id: message.author.id
             },
-            (err, db) => {
+            async (err, db) => {
                if (err) return console.error(err);
                const minedb = db.mines.find(
                   x => x.index == client.mineSelected.get(message.author.id)
@@ -95,15 +95,7 @@ module.exports = class {
                         ).level
                      )
                   ) {
-                     db.points += this.rewards.find(
-                        x =>
-                        x.level ==
-                        db.mines.find(
-                           x =>
-                           x.index ==
-                           client.mineSelected.get(message.author.id)
-                        ).level
-                     ).points;
+                     this.points = await new client.methods.addPoints(client, message.author, this.rewards.find(x => x.level == db.mines.find(x => x.index == client.mineSelected.get(message.author.id)).level).points);
                   }
                   db.markModified("mines");
                   db.save(err => {
@@ -142,19 +134,7 @@ module.exports = class {
                                                 )
                                           ).level
                                     )
-                                       ? `\n**+${
-                                            this.rewards.find(
-                                               x =>
-                                                  x.level ==
-                                                  db.mines.find(
-                                                     x =>
-                                                        x.index ==
-                                                        client.mineSelected.get(
-                                                           message.author.id
-                                                        )
-                                                  ).level
-                                            ).points
-                                         }** Points`
+                                       ? `\n**+${this.points}** Points`
                                        : ""
                                  }`
                            )
@@ -166,7 +146,7 @@ module.exports = class {
                               if (err) return console.error(err);
                               d.sum_levelups += 1;
                               if (this.rewards.find(x => x.level == db.mines.find(x => x.index == client.mineSelected.get(message.author.id).level))) {
-                                 d.sum_points += this.rewards.find(x => x.level == db.ines.find(x => x.index == client.mineSelected.get(message.author.id).level).points)
+                                 d.sum_points += this.points;
                               }
                               d.save(err => {
                                  if (err) return console.error(err);
