@@ -7,8 +7,6 @@ module.exports = class test {
    }
 
    async run(client, message, args) {
-      message.channel.send(`success`);
-      message.channel.send(`and the update worked!`);
-      message.channel.send(`again`);
+      message.channel.send(`Did you see how this command said "command for bot owner" not "command for bot user"?`)
    }
 };
