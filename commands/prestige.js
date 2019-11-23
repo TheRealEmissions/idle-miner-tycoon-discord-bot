@@ -29,6 +29,7 @@ module.exports = class {
                         collector.on('collect', reaction => {
                             if (reaction.emoji.name == emojis[0]) {
                                 msg.delete();
+                                db.points += 10;
                                 db.mines.find(x => x.index == client.mineSelected.get(message.author.id)).level = 1;
                                 db.mines.find(x => x.index == client.mineSelected.get(message.author.id)).prestige += 1;
                                 db.mines.find(x => x.index == client.mineSelected.get(message.author.id)).balance = 0;
@@ -41,7 +42,7 @@ module.exports = class {
                                             .setColor(message.guild.me.displayHexColor)
                                             .setTitle(`Prestiged!`)
                                             .setDescription(`You have prestiged your **${mine.type.charAt(0)}${mine.type.toLowerCase().slice(1)} Mine** to **Prestige ${db.mines.find(x => x.index == client.mineSelected.get(message.author.id)).prestige}**! :partying_face:`)
-                                            .addField(`Changes:`, `**+3.5%++ KG/s mined\n**+2%** Backpack Size`)
+                                            .addField(`Changes:`, `**+3.5%++ KG/s mined\n**+2%** Backpack Size\n**+10** Points`)
                                         );
                                         client.models.guildMines.findOne({
                                             "guild_id": message.guild.id,
